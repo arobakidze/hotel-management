@@ -1,4 +1,4 @@
-package com.hotel.model;
+package com.brickart.hotelmanagement;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,18 +10,18 @@ public class Booking {
     private LocalDate checkIn;
     private LocalDate checkOut;
     private LocalDateTime createdAt;
-    private boolean isPaid;
+    private boolean paid;
     private Guest guest;
     private Room room;
     private List<Service> services;
 
     public Booking(Long id, LocalDate checkIn, LocalDate checkOut,
-                   LocalDateTime createdAt, boolean isPaid, Guest guest, Room room) {
+                   LocalDateTime createdAt, boolean paid, Guest guest, Room room) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.createdAt = createdAt;
-        this.isPaid = isPaid;
+        this.paid = paid;
         this.guest = guest;
         this.room = room;
     }
@@ -43,7 +43,7 @@ public class Booking {
     }
 
     public boolean isPaid() {
-        return isPaid;
+        return paid;
     }
 
     public Guest getGuest() {
@@ -59,7 +59,7 @@ public class Booking {
     }
 
     public void setPaid(boolean paid) {
-        isPaid = paid;
+        this.paid = paid;
     }
 
     public void setServices(List<Service> services) {

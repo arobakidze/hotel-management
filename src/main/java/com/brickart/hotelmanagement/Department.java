@@ -1,10 +1,13 @@
-package com.hotel.model;
+package com.brickart.hotelmanagement;
+
+import java.util.List;
 
 public class Department {
 
     private Long id;
     private String name;
     private String location;
+    private List<Staff> staff;
 
     public Department(Long id, String name, String location) {
         this.id = id;
@@ -22,5 +25,13 @@ public class Department {
 
     public String getLocation() {
         return location;
+    }
+
+    public List<Staff> getStaff() {
+        return staff;
+    }
+
+    public void setStaff(List<Staff> staff) {
+        this.staff = staff;
     }
 }

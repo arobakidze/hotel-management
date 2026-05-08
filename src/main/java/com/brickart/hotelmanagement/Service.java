@@ -1,4 +1,4 @@
-package com.hotel.model;
+package com.brickart.hotelmanagement;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

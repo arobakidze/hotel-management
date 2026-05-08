@@ -1,4 +1,4 @@
-package com.hotel.model;
+package com.brickart.hotelmanagement;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package com.hotel.model;
+package com.brickart.hotelmanagement;
 
 import java.util.List;
 
@@ -7,15 +7,15 @@ public class Room {
     private Long id;
     private int roomNumber;
     private int floor;
-    private boolean isAvailable;
+    private boolean available;
     private RoomType roomType;
     private List<Amenity> amenities;
 
-    public Room(Long id, int roomNumber, int floor, boolean isAvailable, RoomType roomType) {
+    public Room(Long id, int roomNumber, int floor, boolean available, RoomType roomType) {
         this.id = id;
         this.roomNumber = roomNumber;
         this.floor = floor;
-        this.isAvailable = isAvailable;
+        this.available = available;
         this.roomType = roomType;
     }
 
@@ -32,7 +32,7 @@ public class Room {
     }
 
     public boolean isAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public RoomType getRoomType() {
@@ -44,7 +44,7 @@ public class Room {
     }
 
     public void setAvailable(boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 
     public void setAmenities(List<Amenity> amenities) {

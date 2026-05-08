@@ -1,4 +1,4 @@
-package com.hotel.model;
+package com.brickart.hotelmanagement;
 
 public class Amenity {
 

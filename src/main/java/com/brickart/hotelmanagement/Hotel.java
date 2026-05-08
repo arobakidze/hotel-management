@@ -1,4 +1,4 @@
-package com.hotel.model;
+package com.brickart.hotelmanagement;
 
 import java.util.List;
 
@@ -10,7 +10,8 @@ public class Hotel {
     private String phone;
     private int starRating;
     private List<Room> rooms;
-    private List<Staff> staff;
+    private List<Department> departments;
+    private List<Booking> bookings;
 
     public Hotel(Long id, String name, String address, String phone, int starRating) {
         this.id = id;
@@ -44,15 +45,23 @@ public class Hotel {
         return rooms;
     }
 
-    public List<Staff> getStaff() {
-        return staff;
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
 
-    public void setStaff(List<Staff> staff) {
-        this.staff = staff;
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
