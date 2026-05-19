@@ -9,9 +9,8 @@ public class Hotel {
     private String address;
     private String phone;
     private int starRating;
-    private List<Room> rooms;
     private List<Department> departments;
-    private List<Booking> bookings;
+    private List<Room> rooms;
 
     public Hotel(Long id, String name, String address, String phone, int starRating) {
         this.id = id;
@@ -41,31 +40,23 @@ public class Hotel {
         return starRating;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
     public List<Department> getDepartments() {
         return departments;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
+    public List<Room> getRooms() {
+        return rooms;
     }
 
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setDepartments(List<Department> departments) {
         this.departments = departments;
     }
 
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }

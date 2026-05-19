@@ -5,7 +5,10 @@ import com.brickart.hotelmanagement.domain.Hotel;
 import java.util.List;
 
 public interface HotelService {
-    Hotel create(Hotel hotel);
+
+    void create(Hotel hotel);
+
+    void createHotelWithDetails(Hotel hotel);
 
     void update(Hotel hotel);
 

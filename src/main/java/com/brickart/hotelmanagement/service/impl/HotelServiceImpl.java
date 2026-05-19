@@ -1,25 +1,46 @@
 package com.brickart.hotelmanagement.service.impl;
 
+import com.brickart.hotelmanagement.domain.Department;
 import com.brickart.hotelmanagement.domain.Hotel;
+import com.brickart.hotelmanagement.domain.Room;
+import com.brickart.hotelmanagement.persistence.DepartmentRepository;
 import com.brickart.hotelmanagement.persistence.HotelRepository;
+import com.brickart.hotelmanagement.persistence.RoomRepository;
+import com.brickart.hotelmanagement.persistence.impl.DepartmentRepositoryImpl;
 import com.brickart.hotelmanagement.persistence.impl.HotelRepositoryImpl;
+import com.brickart.hotelmanagement.persistence.impl.RoomRepositoryImpl;
 import com.brickart.hotelmanagement.service.HotelService;
 
 import java.util.List;
 
 public class HotelServiceImpl implements HotelService {
 
-    private final HotelRepository hotelRepository;
+    private final HotelRepository hotelRepository = new HotelRepositoryImpl();
+    private final DepartmentRepository departmentRepository = new DepartmentRepositoryImpl();
+    private final RoomRepository roomRepository = new RoomRepositoryImpl();
 
-    public HotelServiceImpl() {
-        this.hotelRepository = new HotelRepositoryImpl();
+    @Override
+    public void create(Hotel hotel) {
+        hotelRepository.create(hotel);
     }
 
     @Override
-    public Hotel create(Hotel hotel) {
-        hotel.setId(null);
+    public void createHotelWithDetails(Hotel hotel) {
         hotelRepository.create(hotel);
-        return hotel;
+
+        if (hotel.getDepartments() != null) {
+            for (Department department : hotel.getDepartments()) {
+                department.setHotelId(hotel.getId());
+                departmentRepository.create(department);
+            }
+        }
+
+        if (hotel.getRooms() != null) {
+            for (Room room : hotel.getRooms()) {
+                room.setHotelId(hotel.getId());
+                roomRepository.create(room);
+            }
+        }
     }
 
     @Override
