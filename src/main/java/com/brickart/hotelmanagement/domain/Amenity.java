@@ -1,4 +1,4 @@
-package com.brickart.hotelmanagement;
+package com.brickart.hotelmanagement.domain;
 
 public class Amenity {
 
@@ -22,5 +22,8 @@ public class Amenity {
 
     public boolean isComplimentary() {
         return isComplimentary;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 }

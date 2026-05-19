@@ -1,4 +1,4 @@
-package com.brickart.hotelmanagement;
+package com.brickart.hotelmanagement.domain;
 
 import java.math.BigDecimal;
 

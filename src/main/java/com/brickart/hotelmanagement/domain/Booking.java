@@ -1,4 +1,4 @@
-package com.brickart.hotelmanagement;
+package com.brickart.hotelmanagement.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -64,5 +64,8 @@ public class Booking {
 
     public void setServices(List<Service> services) {
         this.services = services;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -1,4 +1,4 @@
-package com.brickart.hotelmanagement;
+package com.brickart.hotelmanagement.domain;
 
 import java.time.LocalDate;
 
@@ -49,5 +49,8 @@ public class Guest {
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 }

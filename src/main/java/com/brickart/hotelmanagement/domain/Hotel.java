@@ -1,4 +1,4 @@
-package com.brickart.hotelmanagement;
+package com.brickart.hotelmanagement.domain;
 
 import java.util.List;
 
@@ -63,5 +63,9 @@ public class Hotel {
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

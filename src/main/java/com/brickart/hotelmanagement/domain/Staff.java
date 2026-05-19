@@ -1,4 +1,4 @@
-package com.brickart.hotelmanagement;
+package com.brickart.hotelmanagement.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,16 +12,24 @@ public class Staff {
     private BigDecimal salary;
     private LocalDate hireDate;
     private boolean active;
+    private Long departmentId;
 
-    public Staff(Long id, String firstName, String lastName, String position,
-                 BigDecimal salary, LocalDate hireDate, boolean active) {
+    public Staff(Long id, Long departmentId, String firstName, String lastName,
+                 String position, BigDecimal salary,
+                 LocalDate hireDate, boolean active) {
+
         this.id = id;
+        this.departmentId = departmentId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
         this.salary = salary;
         this.hireDate = hireDate;
         this.active = active;
+    }
+
+    public Long getDepartmentId() {
+        return departmentId;
     }
 
     public Long getId() {
@@ -50,5 +58,8 @@ public class Staff {
 
     public boolean isActive() {
         return active;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 }

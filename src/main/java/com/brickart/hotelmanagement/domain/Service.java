@@ -1,4 +1,4 @@
-package com.brickart.hotelmanagement;
+package com.brickart.hotelmanagement.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -31,5 +31,8 @@ public class Service {
 
     public LocalDateTime getOrderedAt() {
         return orderedAt;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 }
