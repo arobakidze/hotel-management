@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.brickart.hotelmanagement.persistence.mybatis.dao.BookingDao">
+
+    <resultMap id="BookingSimpleResultMap" type="Booking">
+        <id property="id" column="id"/>
+        <result property="checkIn" column="check_in"/>
+        <result property="checkOut" column="check_out"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="paid" column="is_paid"/>
+
+        <association property="guest" javaType="Guest">
+            <id property="id" column="guest_id"/>
+        </association>
+
+        <association property="room" javaType="Room">
+            <id property="id" column="room_id"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="BookingDetailsResultMap" type="Booking">
+        <id property="id" column="booking_id"/>
+        <result property="checkIn" column="check_in"/>
+        <result property="checkOut" column="check_out"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="paid" column="is_paid"/>
+
+        <association property="guest" javaType="Guest">
+            <id property="id" column="guest_id"/>
+            <result property="firstName" column="guest_first_name"/>
+            <result property="lastName" column="guest_last_name"/>
+            <result property="email" column="email"/>
+            <result property="phone" column="phone"/>
+            <result property="passportNumber" column="passport_number"/>
+            <result property="dateOfBirth" column="date_of_birth"/>
+        </association>
+
+        <association property="room" javaType="Room">
+            <id property="id" column="room_id"/>
+            <result property="hotelId" column="hotel_id"/>
+            <result property="roomNumber" column="room_number"/>
+            <result property="floor" column="floor"/>
+            <result property="available" column="is_available"/>
+
+            <association property="roomType" javaType="RoomType">
+                <id property="id" column="room_type_id"/>
+                <result property="name" column="room_type_name"/>
+                <result property="capacity" column="capacity"/>
+                <result property="pricePerNight" column="price_per_night"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <insert id="create" parameterType="Booking" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO bookings (guest_id, room_id, check_in, check_out, created_at, is_paid)
+        VALUES (#{guest.id}, #{room.id}, #{checkIn}, #{checkOut}, #{createdAt}, #{paid})
+    </insert>
+
+    <update id="update" parameterType="Booking">
+        UPDATE bookings
+        SET guest_id = #{guest.id},
+        room_id = #{room.id},
+        check_in = #{checkIn},
+        check_out = #{checkOut},
+        is_paid = #{paid}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM bookings WHERE id = #{id}
+    </delete>
+
+    <select id="findById" parameterType="long" resultMap="BookingSimpleResultMap">
+        SELECT id, guest_id, room_id, check_in, check_out, created_at, is_paid
+        FROM bookings
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="BookingSimpleResultMap">
+        SELECT id, guest_id, room_id, check_in, check_out, created_at, is_paid
+        FROM bookings
+    </select>
+
+    <select id="findAllWithDetails" resultMap="BookingDetailsResultMap">
+        SELECT b.id AS booking_id, b.check_in, b.check_out, b.created_at, b.is_paid,
+        g.id AS guest_id,
+        g.first_name AS guest_first_name,
+        g.last_name AS guest_last_name,
+        g.email,
+        g.phone,
+        g.passport_number,
+        g.date_of_birth,
+        r.id AS room_id,
+        r.hotel_id,
+        r.room_number,
+        r.floor,
+        r.is_available,
+        rt.id AS room_type_id,
+        rt.name AS room_type_name,
+        rt.capacity,
+        rt.price_per_night
+        FROM bookings b
+        JOIN guests g ON g.id = b.guest_id
+        JOIN rooms r ON r.id = b.room_id
+        JOIN room_types rt ON rt.id = r.room_type_id
+    </select>
+
+</mapper>

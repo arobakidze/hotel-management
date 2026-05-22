@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.brickart.hotelmanagement.persistence.mybatis.dao.HotelDao">
+
+    <insert id="create" parameterType="Hotel" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO hotels (name, address, phone, star_rating)
+        VALUES (#{name}, #{address}, #{phone}, #{starRating})
+    </insert>
+
+    <update id="update" parameterType="Hotel">
+        UPDATE hotels
+        SET name = #{name},
+        address = #{address},
+        phone = #{phone},
+        star_rating = #{starRating}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM hotels WHERE id = #{id}
+    </delete>
+
+    <select id="findById" parameterType="long" resultType="Hotel">
+        SELECT id, name, address, phone, star_rating
+        FROM hotels
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultType="Hotel">
+        SELECT id, name, address, phone, star_rating
+        FROM hotels
+    </select>
+
+</mapper>

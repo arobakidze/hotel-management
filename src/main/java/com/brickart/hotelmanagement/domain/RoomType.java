@@ -16,6 +16,10 @@ public class RoomType {
         this.pricePerNight = pricePerNight;
     }
 
+    public RoomType() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -30,5 +34,21 @@ public class RoomType {
 
     public BigDecimal getPricePerNight() {
         return pricePerNight;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setPricePerNight(BigDecimal pricePerNight) {
+        this.pricePerNight = pricePerNight;
     }
 }

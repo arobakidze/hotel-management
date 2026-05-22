@@ -26,6 +26,10 @@ public class Booking {
         this.room = room;
     }
 
+    public Booking() {
+    }
+
+
     public Long getId() {
         return id;
     }
@@ -68,4 +72,15 @@ public class Booking {
     public void setId(Long id) {
         this.id = id;
     }
+    public void setCheckIn(LocalDate checkIn) {
+        this.checkIn = checkIn;
+    }
+    public void setCheckOut(LocalDate checkOut) {
+        this.checkOut = checkOut;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
 }

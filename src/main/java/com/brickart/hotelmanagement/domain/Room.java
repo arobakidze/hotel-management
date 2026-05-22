@@ -21,6 +21,10 @@ public class Room {
         this.roomType = roomType;
     }
 
+    public Room() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -52,14 +56,29 @@ public class Room {
     public void setAmenities(List<Amenity> amenities) {
         this.amenities = amenities;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public Long getHotelId() {
         return hotelId;
     }
+
     public void setHotelId(Long hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
     }
 
 }

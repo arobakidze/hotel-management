@@ -1,44 +1,59 @@
 package com.brickart.hotelmanagement.service.impl;
 
 import com.brickart.hotelmanagement.domain.Booking;
-import com.brickart.hotelmanagement.persistence.BookingRepository;
-import com.brickart.hotelmanagement.persistence.impl.BookingRepositoryImpl;
+import com.brickart.hotelmanagement.persistence.mybatis.MyBatisUtil;
+import com.brickart.hotelmanagement.persistence.mybatis.dao.BookingDao;
 import com.brickart.hotelmanagement.service.BookingService;
+import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
 public class BookingServiceImpl implements BookingService {
 
-    private final BookingRepository bookingRepository;
-
-    public BookingServiceImpl() {
-        this.bookingRepository = new BookingRepositoryImpl();
-    }
-
     @Override
     public Booking create(Booking booking) {
         booking.setId(null);
-        bookingRepository.create(booking);
+
+        try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
+            BookingDao bookingDao = session.getMapper(BookingDao.class);
+            bookingDao.create(booking);
+            session.commit();
+        }
+
         return booking;
     }
 
     @Override
     public void update(Booking booking) {
-        bookingRepository.update(booking);
+        try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
+            BookingDao bookingDao = session.getMapper(BookingDao.class);
+            bookingDao.update(booking);
+            session.commit();
+        }
     }
 
     @Override
     public void delete(Long id) {
-        bookingRepository.delete(id);
+        try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
+            BookingDao bookingDao = session.getMapper(BookingDao.class);
+            bookingDao.delete(id);
+            session.commit();
+        }
     }
 
     @Override
     public List<Booking> findAll() {
-        return bookingRepository.findAll();
+        try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
+            BookingDao bookingDao = session.getMapper(BookingDao.class);
+            return bookingDao.findAll();
+        }
     }
 
     @Override
     public List<Booking> findAllWithDetails() {
-        return bookingRepository.findAllWithDetails();
+        try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
+            BookingDao bookingDao = session.getMapper(BookingDao.class);
+            return bookingDao.findAllWithDetails();
+        }
     }
 }
