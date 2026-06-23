@@ -9,6 +9,11 @@ public class DiscountPricingStrategy implements PricingStrategy {
     private final PricingStrategy baseStrategy;
     private final BigDecimal discountPercent;
 
+    public DiscountPricingStrategy() {
+        this.baseStrategy = new StandardPricingStrategy();
+        this.discountPercent = BigDecimal.TEN;
+    }
+
     public DiscountPricingStrategy(PricingStrategy baseStrategy, BigDecimal discountPercent) {
         this.baseStrategy = baseStrategy;
         this.discountPercent = discountPercent;
@@ -17,11 +22,9 @@ public class DiscountPricingStrategy implements PricingStrategy {
     @Override
     public BigDecimal calculatePrice(Booking booking) {
         BigDecimal originalPrice = baseStrategy.calculatePrice(booking);
-
         BigDecimal discountAmount = originalPrice
                 .multiply(discountPercent)
                 .divide(BigDecimal.valueOf(100));
-
         return originalPrice.subtract(discountAmount);
     }
 }

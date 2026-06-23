@@ -12,6 +12,9 @@ public class Hotel {
     private List<Department> departments;
     private List<Room> rooms;
 
+    public Hotel() {
+    }
+
     public Hotel(Long id, String name, String address, String phone, int starRating) {
         this.id = id;
         this.name = name;
