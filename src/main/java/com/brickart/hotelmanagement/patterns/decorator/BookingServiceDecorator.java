@@ -29,6 +29,11 @@ public abstract class BookingServiceDecorator implements BookingService {
     }
 
     @Override
+    public Booking findById(Long id) {
+        return bookingService.findById(id);
+    }
+
+    @Override
     public List<Booking> findAll() {
         return bookingService.findAll();
     }

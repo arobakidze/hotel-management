@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Smoke Suite">
+    <listeners>
+        <listener class-name="com.brickart.hotelmanagement.listeners.TestListener"/>
+    </listeners>
+    <test name="Smoke Tests">
+        <classes>
+            <class name="com.brickart.hotelmanagement.tests.HotelServiceTest"/>
+            <class name="com.brickart.hotelmanagement.tests.BookingServiceTest"/>
+        </classes>
+    </test>
+</suite>

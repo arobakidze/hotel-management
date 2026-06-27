@@ -42,6 +42,14 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public Booking findById(Long id) {
+        try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
+            BookingDao bookingDao = session.getMapper(BookingDao.class);
+            return bookingDao.findById(id);
+        }
+    }
+
+    @Override
     public List<Booking> findAll() {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             BookingDao bookingDao = session.getMapper(BookingDao.class);

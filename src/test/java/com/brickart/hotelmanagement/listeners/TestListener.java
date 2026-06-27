@@ -6,17 +6,22 @@ import org.testng.ITestResult;
 public class TestListener implements ITestListener {
 
     @Override
+    public void onTestStart(ITestResult result) {
+        System.out.println("STARTING: " + result.getName());
+    }
+
+    @Override
     public void onTestSuccess(ITestResult result) {
-        System.out.println("PASSED: " + result.getName());
+        long durationMs = result.getEndMillis() - result.getStartMillis();
+        System.out.println("PASSED: " + result.getName() + " (" + durationMs + " ms)");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("FAILED: " + result.getName());
-    }
-
-    @Override
-    public void onTestStart(ITestResult result) {
-        System.out.println("STARTING: " + result.getName());
+        long durationMs = result.getEndMillis() - result.getStartMillis();
+        System.out.println("FAILED: " + result.getName() + " (" + durationMs + " ms)");
+        if (result.getThrowable() != null) {
+            System.out.println("  Reason: " + result.getThrowable().getMessage());
+        }
     }
 }
